@@ -22,13 +22,14 @@ net.ipv4.conf.all.log_martians = 1
 
 # Enable source validation by reversed path, as specified in RFC1812
 net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter=1
 
 # Ignore all ICMP ECHO and TIMESTAMP requests sent to it via broadcast/multicast
 net.ipv4.icmp_echo_ignore_broadcasts = 1
 net.ipv4.icmp_ignore_bogus_error_responses = 1
 
 # Discourage Linux from swapping idle server processes to disk (default = 60)
-vm.swappiness = 10
+vm.swappiness = 20
 
 # Be less aggressive about reclaiming cached directory and inode objects
 # in order to improve filesystem performance.
@@ -40,13 +41,13 @@ vm.vfs_cache_pressure = 50
 
 # Increase number of incoming connections that can queue up
 # before dropping
-net.core.somaxconn = 5000
+net.core.somaxconn = 65535
 
 # Handle SYN floods and large numbers of valid HTTPS connections
-net.ipv4.tcp_max_syn_backlog = 3000
+net.ipv4.tcp_max_syn_backlog = 65535
 
 # Increase the length of the network device input queue
-net.core.netdev_max_backlog = 5000
+net.core.netdev_max_backlog = 65535
 
 # Increase system file descriptor limit so we will (probably)
 # never run out under lots of concurrent requests.
@@ -54,7 +55,7 @@ net.core.netdev_max_backlog = 5000
 fs.file-max = 184028
 
 # Widen the port range used for outgoing connections
-net.ipv4.ip_local_port_range = 10000 65000
+net.ipv4.ip_local_port_range = 1024 65535
 
 # If your servers talk UDP, also up these limits
 net.ipv4.udp_rmem_min = 8192
@@ -101,11 +102,10 @@ net.ipv4.tcp_congestion_control=bbr
 # --------------------------------------------------------------------
 
 # Disconnect dead TCP connections after 1 minute
-net.ipv4.tcp_keepalive_time = 30
+net.ipv4.tcp_keepalive_time = 60
 
 # Wait a maximum of 5 * 2 = 10 seconds in the TIME_WAIT state after a FIN, to handle
 # any remaining packets in the network.
-# net.ipv4.netfilter.ip_conntrack_tcp_timeout_time_wait = 5
 net.netfilter.nf_conntrack_tcp_timeout_time_wait = 5
 
 # Allow a high number of timewait sockets
@@ -158,4 +158,7 @@ vm.dirty_ratio = 40
 # A suggested value for pid_max is 1024 * <# of cpu cores/threads in system>
 # e.g., a box with 32 cpus, the default of 32768 is reasonable, for 64 cpus,
 # 65536, for 4096 cpus, 4194304 (which is the upper limit possible).
-#kernel.pid_max = 65536
+kernel.pid_max = 65536
+
+# Uncomment the following to stop low-level messages on console
+kernel.printk = 3 4 1 3
