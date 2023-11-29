@@ -143,3 +143,6 @@ kernel.randomize_va_space = 2
 
 # Prevent setuid programs from dumping core
 fs.suid_dumpable = 0
+
+# Enable tcp window scaling
+net.ipv4.tcp_window_scaling = 1
