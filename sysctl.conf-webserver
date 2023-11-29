@@ -1,14 +1,9 @@
 # Configuration file for runtime kernel parameters.
 # See sysctl.conf(5) for more information.
 
-# This sysctl.conf configuration file original source can be found here, https://gist.github.com/kgriffs/4027835.
-# See also http://www.nateware.com/linux-network-tuning-for-2013.html for
-# an explanation about some of these parameters, and instructions for
-# a few other tweaks outside this file.
-#
-# See also: https://gist.github.com/kgriffs/4027835
-#
-# Assumes a beefy machine with lots of network bandwidth
+# Credits
+# https://gist.github.com/kgriffs/4027835
+# https://github.com/klaver/sysctl/blob/master/sysctl.conf
 
 # I have minaminally modified the template to target devices that wish to only use ipv4 but might use other 
 # protocols such as TCP and UDP. The concept is that we are growing our port availability, lowering our
